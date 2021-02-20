@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Popup javascript html css</title>
+    <style>
+        a
+        {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 8px;
+            background-color: rgb(150, 226, 183);
+            border-radius: 4px;
+            border: 1px solid rgba(135, 207, 235, 0.412);
+            box-shadow: 2px 2px 2px 2px rgba(223, 227, 228, 0.563);
+            color: white;
+            text-decoration: none;
+            text-transform: capitalize;
+        }
+        a:hover 
+        {
+            background-color: teal;
+            transition: 1s;
+        }
+        .modal-container
+        {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0.33);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: -10;
+            visibility: hidden;
+            opacity: 0;
+            transition: 2s;
+        }
+         .modal-container .modal
+         {
+            background-color: rgb(34, 242, 138);
+            border: 1px solid rgb(106, 202, 106);
+            width: 540px;
+            height: 270px;
+            padding: 15px;
+            color: white;
+            text-align: center;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            box-shadow: 2px 2px 2px 2px rgba(135, 207, 235, 0.487);
+         }
+        .modal-container .modal span
+        {
+            display: inline-block;
+            padding: 10px;
+            border-radius: 4px;
+            color: white;
+            background-color: orange;
+            position: absolute;
+            bottom: 16px;
+            letter-spacing: 1px;
+            width: 100px;
+            cursor: pointer;
+            box-shadow: 2px 2px 2px 2px rgba(85, 70, 41, 0.248);
+            transition: 0.8s;
+        }
+        .modal-container .modal span:hover
+        {
+            background-color: rgb(104, 81, 37);
+        }
+        .show
+        {
+            visibility: visible;
+            opacity: 1;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    
+    <a class="data-target" href="#popup-one">popup one</a>
+    <a class="data-target" href="#popup-two">popup two</a>
+    <a class="data-target" href="#popup-three">popup three</a>
+
+    <div id="popup-one" class="modal-container popup-one">
+        <div class="modal">
+            <h1>Hallo Dunia | Popup One</h1>
+            <span class="close">close</span>
+        </div>
+    </div>
+
+    <div id="popup-two" class="modal-container popup-two">
+        <div class="modal">
+            <h1>Hallo Dunia | Popup Two</h1>
+            <span class="close">close</span>
+        </div>
+    </div>
+
+    <div id="popup-three" class="modal-container popup-three">
+        <div class="modal">
+            <h1>Hallo Dunia | Popup Three</h1>
+            <span class="close">close</span>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+
+    const btn = document.getElementsByClassName('data-target');
+
+    for (i = 0;i < btn.length;i++)
+    {
+        // console.log(btn[i]);
+
+        btn[i].addEventListener('click',function (btnE)
+        {
+            // console.log(btnE.target.attributes.href.value);
+            const btnId = btnE.target.attributes.href.value;
+            // console.log(btnId.substr(1));
+
+            const modal = document.getElementsByClassName(btnId.substr(1))[0];
+            // console.log(modal);
+
+            modal.classList.add('show');
+        });
+    }
+
+    const btnClose = document.getElementsByClassName('close');
+
+    for (i = 0;i < btnClose.length;i++)
+    {
+        // console.log(btnClose[i]);
+
+        btnClose[i].addEventListener('click', function (btn) 
+        {
+            // console.log(btn.target.parentElement.parentElement.attributes.id.value);
+            const modalRemove = document.getElementsByClassName(btn.target.parentElement.parentElement.attributes.id.value)[0];
+            console.log(modalRemove.attributes.id.value);
+            const hidden = document.getElementsByClassName(modalRemove.attributes.id.value)[0];
+
+            hidden.classList.remove('show')
+            console.log(hidden);
+
+        });
+    }
+
+</script>
